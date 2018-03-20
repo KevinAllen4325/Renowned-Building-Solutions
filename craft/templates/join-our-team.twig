@@ -1,0 +1,18 @@
+{% extends "_layout.twig" %}
+{% block content %}
+    <div class="main-background2"></div>
+    <div class="container">
+        <div class="blog-content">
+            <h1 class="headline">{{ entry.title }}</h1>
+                <div class="content-wrapper">
+                    <div class="blog-post">
+                        <div class="top-text">
+                            {{ entry.body }}
+                        </div>
+                        <img style="margin-bottom: 60px;" src="{{ entry.headerImage.first().getUrl() }}">
+                    </div>
+                    {% include "_testimonials.twig" %}
+                </div>
+        </div>
+    </div>
+{% endblock %}

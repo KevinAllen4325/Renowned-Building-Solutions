@@ -1,0 +1,34 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <div class="main-background2"></div>
+    <div class="container">
+    <div class="blog-content">
+        <h1 class="headline">{{ entry.title }}</h1>
+        <div class="content-wrapper">
+            <a class="blog-back" href=""><span class="fa fa-arrow-left"></span> back</a>
+            <div class="blog-post">
+                {{ entry.body }}
+            </div>
+            <div class="testimonials">
+                <p class="testimonial-title">Get a Free Estimate</p>
+                <p class="estimate-text">Get a free flat roofing estimate by telling us a bit about your project. <span class="free-estimate hover-blue">Click here to send us your information and receive an estimate <span class="fa fa-angle-double-right"></span></span></p>
+                <p class="testimonial-title">Testimonials</p>
+                <div class="testimonial-text">
+                    {% for block in craft.entries.section('blog').first().testimonial %}
+                        {% if block.type == 'testimonials' %}
+                            <div>
+                                <p>{{ block.comment }}</p>
+                                <p>-<i>{{ block.customerName }}</i></p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var previousPage = document.referrer;
+        $('.blog-back').attr('href', previousPage)
+    </script>
+{% endblock %}

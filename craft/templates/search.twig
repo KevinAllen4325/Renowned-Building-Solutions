@@ -1,0 +1,30 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <script src="/assets/js/tipuesearch_content.js"></script>
+    <script src="/assets/js/tipuesearch_set.js"></script>
+    <script src="/assets/js/tipuesearch.js"></script>
+    <div class="main-background2"></div>
+    <div class="container">
+        <div class="search-content">
+            <h1 class="headline">{{ entry.headline }}</h1>
+            <div class="content-wrapper">
+                <div id="tipue_search_content"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+       $(function(){
+           $('#tipue_search_input, #tipue_search_input_mobile').tipuesearch({
+               'show': 20,
+               'showTime': false,
+           });
+       })
+
+       $('.menu').on('click', function() {
+           $('.mobile-nav').toggleClass('mobile-nav-open', 350)
+           $('.menu').fadeToggle();
+           $('.menu-overlay').fadeToggle();
+       })
+    </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <div class="main-background2"></div>
+    <div class="container">
+        <div class="contact-section">
+            <div class="contact-section">
+                <h1 class="headline">{{ entry.title }}</h1>
+                <div class="content-wrapper">
+                    <div class="form">
+                        <div class="contact-body">
+                            {{ entry.body }}
+                        </div>
+                        <form method="post" action="" accept-charset="UTF-8">
+                            {{ getCsrfInput() }}
+                            <input type="hidden" name="action" value="contactForm/sendMessage">
+                            <input type="hidden" name="message[subject]" value="New Contact Form Submission">
+                            
+                            <p>Your Name (required):</p>
+                            <input type="text" name="message[Name]" required>
+
+                            <p>Your Email (required):</p>
+                            <input id="contact-form-email" type="email" name="fromEmail" required>
+                            <input id="contact-form-email1" type="hidden" name="message[Email]" required>
+
+                            <p>Message:</p>
+                            <textarea name="message[body]"></textarea>
+
+                            <button id="submit-contact" type="submit">SEND</button>
+                        </form>
+                    </div>
+                    <div class="contact-address">
+                        <p class="address-header">Contact Us Today</p>
+                        {% set homepage = craft.entries.section('homepage').first() %}
+                        <p class="address-content">{{ homepage.address|nl2br|raw }}</p>
+                        <p class="address-content"><span class="fa fa-phone" style="padding-right: 15px;"></span>Phone: 1-847-736-6961</p>
+                        <p class="address-content"><span class="fa fa-envelope-o" style="padding-right: 15px;"></span>info@renownedbuildingsolutions.com</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2953.179532944342!2d-88.28885194869757!3d42.25333844972462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880f72fd333a00c9%3A0xe0acf1e93bacdacd!2s3305+S+Illinois+Rte+31+%232%2C+Crystal+Lake%2C+IL+60014!5e0!3m2!1sen!2sus!4v1513099579507" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <a href="https://goo.gl/maps/u9MQYuXxQEu" target="_blank">View Larger Map</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#submit-contact').on('click', function() {
+            $('#contact-form-email1').val($('#contact-form-email').val())
+        })
+    </script>
+{% endblock %}

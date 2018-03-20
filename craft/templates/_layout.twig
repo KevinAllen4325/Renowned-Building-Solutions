@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	{#META TAGS#}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="{{ entry.pageDescription }}">
+	<title>{{ entry.pageTitle }}</title>
+	<title>Renowned Building Solutions</title>
+	{#FONTS#}
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|Roboto:300,400,400i,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+	{#STYLE SHEETS#}
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css"/>
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css"/>
+	{#JS#}
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="/assets/js/slick.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+{% set flashes = craft.session.getFlashes(false) %}
+{% if flashes.notice is defined %}
+    <div id="flash-message">
+        <div id="flash-text"><p><i class=" fa fa-check"></i> {{ flashes.notice }}</p></div>
+    </div>
+{% endif %}
+<div class="blue-line"></div>
+<div class="menu-overlay"></div>
+<div class="mobile-nav">
+	<span class="fa fa-bars menu menu-active" aria-hidden="true"></span>
+	<span class="fa fa-times menu" aria-hidden="true"></span>
+	<div class="mobile-nav-links">
+		<div class="mobile-search">
+			<i class="fa fa-search"></i>
+			<form action="/search/">
+				<input type="text" placeholder="Search" name="q" id="tipue_search_input_mobile">
+			</form>
+		</div>
+		<a href="/">HOME</a>
+		<a href="/meet-the-team/">TEAM</a>
+		<div class="mobile-services">
+			<p>SERVICES</p>
+			<span class="fa fa-chevron-right mobile-chevron"></span>
+			<a href="/services/roofing/">ROOFING</a>
+			<a href="/services/siding/">SIDING</a>
+			<a href="/services/windows/">WINDOWS</a>
+			<a href="/services/gutters/">GUTTERS</a>
+			<a href="/services/storm-damage-claims/">STORM DAMAGE CLAIMS</a>
+		</div>
+		<a href="/work/">WORK</a>
+		<a class="free-estimate">FREE ESTIMATE</a>
+		<a href="/blog/">BLOG</a>
+		<a href="/contact-us/">CONTACT</a>
+		<div class="social">
+			<a href="https://www.facebook.com//Renownedbuildingsolutions/?ref=aymt_homepage_panel" class="fa fa-facebook-square" aria-hidden="true" target="_blank"></a>
+			<a target="_blank" href="https://www.linkedin.com/company/6652956/" class="fa fa-linkedin-square" aria-hidden="true"></a>
+			<a target="_blank" href="https://www.pinterest.com/renownedbuild/?eq=renowned%20building%20solutions&etslf=1591" class="fa fa-pinterest-square" aria-hidden="true"></a>
+			<a target="_blank"  href="https://twitter.com/renownedbuild" class="fa fa-twitter-square" aria-hidden="true"></a>
+		</div>
+		<p class="nav-ka">Web Development by <a href="http://kevinallen.io" target="_blank">Kevin Allen</a></p>
+	</div>
+</div>
+<div class="overlay ">
+<div class="estimate-form">
+	<span class="estimate-close">X</span>
+	<img src="/assets/images/general/logo.png">
+	<h2>Request a Free Estimate</h2>
+	<p>We would appreciate it if you would take a few moments to answer the following questions. Please be assured that we do not share or sell personal information about you except when we have your permission.</p>
+	<form method="post" action="" accept-charset="UTF-8">
+        {{ getCsrfInput() }}
+		<input type="hidden" name="action" value="contactForm/sendMessage">
+		<input type="hidden" name="message[subject]" value="New Free Estimate Form Submission">
+
+		<p>Your Name (required):</p>
+		<input type="text" name="message[Name]" required>
+
+		<p>Your Email (required):</p>
+		<input id="estimate-email1" type="email" name="fromEmail" required>
+		<input id="estimate-email" type="hidden" name="message[Email]" required>
+
+		<p>Phone Number (required):</p>
+		<input type="tel" name="message[Phone]" required>
+
+		<p>Your City (required):</p>
+		<input type="text" name="message[City]" required>
+
+		<p>Area of Interest:</p>
+		<label><input type="checkbox" name="message[Services][]" value="Roofing"> Roofing</label>
+		<label><input type="checkbox" name="message[Services][]" value="Siding">Siding</label>
+		<label><input type="checkbox" name="message[Services][]" value="Gutters">Gutters</label>
+		<label><input type="checkbox" name="message[Services][]" value="Windows">Windows</label>
+
+		<p>Message:</p>
+		<textarea name="message[body]"></textarea>
+
+		<button id="submit" type="submit">SEND</button>
+	</form>
+</div>
+</div>
+<div class="container">
+	<header>
+		<div class="logo">
+			<img src="/assets/images/general/logo.png">
+			<div class="header-contact-info">
+				<div class="title">
+					Call
+				</div><!--
+				--><div class="caption">
+					847-736-6961
+				</div>
+				<div class="title">
+					Email
+				</div><!--
+				--><div class="caption">
+					info@renownedbuildingsolutions.com
+				</div>
+			</div>
+		</div>
+	</header>
+	<nav>
+		<ul>
+			<li id="homepage" class="active"><a href="/">HOME</a></li><!--
+			--><li id="team" class="nav-team"><a href="/meet-the-team/">TEAM</a></li><!--
+			--><li id="services" class="nav-service"><a>SERVICES <span style="font-size: 10px; padding-left: 5px;" class="fa fa-chevron-down"></span></a></li><!--
+			--><li id="work"><a href="/work/">WORK</a></li><!--
+			--><li id="free-estimate">FREE ESTIMATE</li><!--
+			--><li id="blog"><a href="/blog/">BLOG</a></li><!--
+			--><li id="contact"><a href="/contact-us/">CONTACT</a></li>
+		</ul>
+		<div class="service-dropdown">
+			<a href="/services/roofing/">Roofing</a>
+			<a href="/services/siding/">Siding</a>
+			<a href="/services/windows/">Windows</a>
+			<a href="/services/gutters/">Gutters</a>
+			<a href="/services/storm-damage-claims/">Storm Damage Claims</a>
+		</div>
+		<span class="fa fa-search search-icon"></span>
+	</nav>
+	<div class="nav-search">
+		<form action="/search/">
+			<input type="text" placeholder="Type Keywords" name="q" id="tipue_search_input">
+		</form>
+	</div>
+</div>
+	<main id="content" role="main" class="{{ entry.title|lower }}">
+			{% block content %}
+			{% endblock %}
+	</main>
+	{% set home = craft.entries.section('homepage').first() %}
+<div class="container">
+	<footer>
+		<div class="footer-dongle"></div>
+		<div class="footer">
+			<div class="content-wrapper">
+				<div class="footer-grid">
+					<h3>Renowned Building Solutions</h3>
+					{{ home.homepageAbout }}
+					<p class="more-blue">Get a Free Estimate <i class="fa fa-angle-double-right"></i></p>
+				</div>
+				<div class="footer-grid">
+					<h3>Quick Links</h3>
+					<ul>
+						<li>Home</li>
+						<li>Team</li>
+						<li>Services</li>
+						<li>Our Work</li>
+						<li>Blog</li>
+						<li>Contact</li>
+					</ul>
+				</div>
+				<div class="footer-grid">
+					<h3>Contact Us Today</h3>
+					<h5>Our Location</h5>
+					{% set homepage = craft.entries.section('homepage').first() %}
+					<p>{{ homepage.address|nl2br|raw }}</p>
+					<br>
+					<h5>Phone Number</h5>
+					<p>p: 847-736-6961 </p>
+					<br>
+					<a href="/contact-us/" class="email-blue">Send Us an Email <i class="fa fa-angle-double-right"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-footer">
+			<a href="/">HOME</a>
+			<a href="/meet-the-team/">TEAM</a>
+			<div class="mobile-footer-services">
+				<p>SERVICES</p>
+				<span class="fa fa-chevron-right service-chevron"></span>
+				<a href="/services/roofing/">ROOFING</a>
+				<a href="/services/siding/">SIDING</a>
+				<a href="/services/windows/">WINDOWS</a>
+				<a href="/services/gutters/">GUTTERS</a>
+				<a href="/services/storm-damage-claims/">STORM DAMAGE CLAIMS</a>
+			</div>
+			<a href="/work/">WORK</a>
+			<a href="/blog/">BLOG</a>
+			<a href="/contact-us/">CONTACT US</a>
+			<div class="mobile-about">
+				<p class="about-title">ABOUT</p>
+				<span class="fa fa-chevron-right about-chevron"></span>
+				<h3>Renowned Building Solutions</h3>
+                {{ home.homepageAbout }}
+			</div>
+			<div class="footer-grid">
+					<h5>Our Location</h5>
+					<p>3305 S Illinois Rte 31, Unit 2<br>
+						Crystal Lake, IL 60012</p>
+					<br>
+					<h5>Phone Number</h5>
+					<p>p: 847-736-6961 </p>
+					<br>
+					<a href="/contact-us/" class="email-blue">Send Us an Email <i class="fa fa-angle-double-right"></i></a>
+
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="content-wrapper">
+				<p class="cr">© 2018 Renowned Building Solutions</p>
+				<div class="social">
+					<a href="https://www.facebook.com//Renownedbuildingsolutions/?ref=aymt_homepage_panel" class="fa fa-facebook-square" aria-hidden="true" target="_blank"></a>
+					<a target="_blank" href="https://www.linkedin.com/company/6652956/" class="fa fa-linkedin-square" aria-hidden="true"></a>
+					<a target="_blank" href="https://www.pinterest.com/renownedbuild/?eq=renowned%20building%20solutions&etslf=1591" class="fa fa-pinterest-square" aria-hidden="true"></a>
+					<a target="_blank"  href="https://twitter.com/renownedbuild" class="fa fa-twitter-square" aria-hidden="true"></a>
+				</div>
+				<p class="ka">Web Development by Kevin Allen</p>
+			</div>
+		</div>
+
+	</footer>
+
+</div>
+<script src="/assets/js/general.js"></script>
+<script>
+    $('#{{ entry.navTitle|lower }}').addClass('active').siblings().removeClass('active');
+
+    $('.menu').on('click', function() {
+        $('.mobile-nav').toggleClass('mobile-nav-open', 350)
+		$('.menu').fadeToggle();
+		$('.menu-overlay').fadeToggle();
+	})
+	$('.mobile-about').on('click', function() {
+	    $('.about-chevron').toggleClass('chevron-open', 350);
+	    $('.mobile-about').toggleClass('mobile-about-open', 350)
+	})
+		$('.mobile-services').on('click', function() {
+		    $('.mobile-chevron').toggleClass('mobile-chevron-open', 350);
+            $('.mobile-services').toggleClass('mobile-services-open', 350);
+		})
+	$('.mobile-footer-services').on('click', function() {
+	    $('.mobile-footer-services').toggleClass('mobile-footer-service-open', 350);
+        $('.service-chevron').toggleClass('chevron-open')
+	})
+
+	$('#submit').on('click', function() {
+	    $('#estimate-email').val($('#estimate-email1').val())
+	})
+	
+	setTimeout(function () {
+        $('#flash-message').fadeOut('slow');
+    }, 4000);
+
+</script>
+</body>
+</html>

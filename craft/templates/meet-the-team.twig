@@ -1,0 +1,79 @@
+{% extends "_layout.twig" %}
+{% block content %}
+    <div class="main-background2"></div>
+    <div class="container">
+    <div class="blog-content">
+        <h1 class="headline">{{ entry.headline }}</h1>
+        <div class="content-wrapper">
+            <div class="blog-post">
+                <div class="top-text">
+                    {{ entry.text }}
+                </div>
+
+                <div class="team-members">
+                    <select>
+                        <option value="ceo">CEO</option>
+                        <option value="office">Office</option>
+                        <option value="sales">Sales</option>
+                        <option value="contractor">Contractors</option>
+                    </select>
+
+                    {% for team in entry.teamMatrix %}
+                        <div class="team-grid {{ team.department }}">
+                            <img src="{{ team.mainPhoto.first().getUrl() }}">
+                            <div class="team-text">
+                                <h3 class="team-name"><b>{{ team.memberName }}</b>, <i>{{ team.position }}</i></h3>
+                                {{ team.about }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="team-grid coming-soon">
+                        <h2>Coming Soon...</h2>
+                    </div>
+                </div>
+
+            </div>
+            {% include "_testimonials.twig" %}
+        </div>
+    </div>
+    <script>
+        $('.team-grid').hide();
+        $('.ceo').show();
+        var team;
+        $('select').on('change', function() {
+            team =  $('select').val();
+            if(team == 'office'){
+                $('.coming-soon').hide();
+                $('.sales').hide();
+                $('.contractor').hide();
+                $('.ceo').hide();
+                $('.office').fadeIn();
+            } else if(team == 'sales'){
+                if($('.sales').length < 1){
+                    $('.office').hide();
+                    $('.contractor').hide();
+                    $('.ceo').hide();
+                    $('.coming-soon').fadeIn();
+                } else{
+                    $('.coming-soon').hide();
+                    $('.office').hide();
+                    $('.contractor').hide();
+                    $('.ceo').hide();
+                    $('.sales').fadeIn();
+                }
+            } else if(team == 'contractor'){
+                $('.coming-soon').hide();
+                $('.sales').hide();
+                $('.office').hide();
+                $('.ceo').hide();
+                $('.contractor').fadeIn();
+            } else{
+                $('.coming-soon').hide();
+                $('.sales').hide();
+                $('.contractor').hide();
+                $('.office').hide();
+                $('.ceo').fadeIn();
+            }
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+<div class="testimonials">
+    <p class="testimonial-title">Get a Free Estimate</p>
+    <p class="estimate-text">Get a free flat roofing estimate by telling us a bit about your project. <span class="free-estimate hover-blue">Click here to send us your information and receive an estimate <span class="fa fa-angle-double-right"></span></span></p>
+    <p class="testimonial-title">Testimonials</p>
+    <div class="testimonial-text">
+        {% for block in craft.entries.section('blog').first().testimonial %}
+            {% if block.type == 'testimonials' %}
+                <div>
+                    <p>{{ block.comment }}</p>
+                    <p>-<i>{{ block.customerName }}</i></p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

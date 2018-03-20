@@ -1,0 +1,12 @@
+<div class="main-background2"></div>
+        <div class="container">
+            <div class="blog-content">
+                <h1 class="headline">{{ entry.headline }}</h1>
+                <div class="content-wrapper">
+                    <div class="blog-post">
+                        <img src="{{ entry.headerImage.first().getUrl() }}" alt="Faded Siding">
+                        {{ entry.body }}
+                    </div>
+ {% include "_testimonials.twig" %}
+                </div>
+            </div>

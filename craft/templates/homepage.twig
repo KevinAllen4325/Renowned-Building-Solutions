@@ -1,0 +1,78 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <link type="text/css" rel="stylesheet" href="/assets/css/venobox.css"/>
+    <div class="preload"><img src="/assets/images/general/preload.gif"></div>
+    <div class="main-background"></div>
+    <div class="container">
+        <div class="carousel">
+            {% for image in entry.headerImage %}
+                <div id="{{ image.carouselImageClass }}" style="background-image: url('{{ image.getUrl() }}')">
+                    <div class="carousel-text">
+                        <h2>{{ image.sliderHeader }} <span>{{ image.sliderHeaderBlue }}</span></h2>
+                        <p>{{ image.sliderBody }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="homepage-blog">
+            <div class="content-wrapper">
+                <h2>Recent Posts</h2>
+                <div class="blog-grid">
+                    {% set post = craft.entries.section('blogPost').limit(4) %}
+                    {% for post in post %}
+                        <div class="grid-box">
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.body|excerpt(250) }}</p>
+                            <a href="/blog/{{ post.slug }}">Read More <span class="fa fa-angle-double-right"></span></a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <div class="rbs-overview">
+            <div class="content-wrapper">
+                {{ entry.rbsOverview }}
+                <div class="liftedCorners">
+                    <a style="outline: none;" class="venobox" data-autoplay="true" data-vbtype="video" href="https://www.youtube.com/embed/ekiZduarwIk"><img id="commercial" src="/assets/images/general/commercialPic.jpg"/></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="/assets/js/venobox.min.js"></script>
+    <script>
+        $('.carousel').slick({
+            autoplay: true,
+            swipe: false,
+            infinite: true,
+            arrows: false,
+            dots: true,
+            autoplaySpeed: 5000,
+            fade: true
+        });
+
+        //OPENS ESTIMATE FORM ON LOAD
+        $(function(){
+            var estimate = setTimeout(function () {
+                $('.overlay').addClass('overlay-open', 350);
+            }, 20000);
+
+            $('#free-estimate, .venobox').on('click', function() {
+                clearTimeout(estimate);
+            });
+
+            $('.venobox').venobox({
+                spinner: 'cube-grid',
+                spinColor: '#4180b8',
+                titleColor: '#4180b8'
+            });
+        });
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $('.preload').fadeOut();
+            }, 1500)
+        });
+    </script>
+{% endblock %}

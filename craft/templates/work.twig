@@ -1,0 +1,45 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <link rel="stylesheet" href="/assets/css/justifiedGallery.min.css" />
+    <link rel="stylesheet" href="/assets/css/colorbox.css" />
+    <div class="main-background2"></div>
+    <div class="container">
+        <div class="work-content">
+            <h1 class="headline">{{ entry.headline }}</h1>
+            <div class="content-wrapper">
+                <p>Quality is what we strive for with each project. <a href="/contact-us/">Contact us for a free estimate</a> to start your own custom renovation. </p>
+                <div id="mygallery" class="gallery">
+                   {% for image in entry.gallery %}
+                       <a href="{{ image.getUrl() }}" class="gall">
+                           <img src="{{ image.getUrl() }}">
+                       </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="/assets/js/jquery.justifiedGallery.min.js"></script>
+    <script src="/assets/js/jquery.colorbox-min.js"></script>
+    <script>
+        $("#mygallery").justifiedGallery({
+            rowHeight: 130,
+            margins: 4
+        }).on('jg.complete', function () {
+            $(this).find('a').colorbox({
+                maxWidth : '85%',
+                maxHeight : '85%',
+                opacity : 0.8,
+                transition : 'elastic',
+                current : '',
+                arrowKey: true,
+                rel: 'gall'
+            });
+        });
+    </script>
+{% endblock %}

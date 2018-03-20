@@ -1,0 +1,35 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+    <div class="main-background2"></div>
+    <div class="container">
+        <div class="blog-content">
+            <h1 class="headline">{{ entry.title }}</h1>
+            <div class="content-wrapper">
+                <ul class="blog-preview">
+                        {% set blog = craft.entries.section('blogPost') %}
+                        {% for entry in blog %}
+                            <li class="post">
+                                <h2>{{ entry.title }}</h2>
+                                <p>{{ entry.body|excerpt(250) }}<a href="/blog/{{ entry.slug }}">Read More <span class="fa fa-angle-double-right"></span></a></p>
+                            </li>
+                        {% endfor %}
+                </ul>
+                <div class="testimonials">
+                    <p class="testimonial-title">Get a Free Estimate</p>
+                    <p class="estimate-text">Get a free roofing or siding estimate by telling us a bit about your project. <span class="free-estimate hover-blue">Click here to send us your information and receive an estimate <span class="fa fa-angle-double-right"></span></span></p>
+                    <p class="testimonial-title">Testimonials</p>
+                    <div class="testimonial-text">
+                        {% for comment in entry.testimonial %}
+                            {% if comment.type == 'testimonials' %}
+                                <div>
+                                    <p>{{ comment.comment }}</p>
+                                    <p>-<i>{{ comment.customerName }}</i></p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
